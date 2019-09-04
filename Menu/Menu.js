@@ -61,5 +61,5 @@ let menuItems = [
 }
 
 
-menuBtn.appendChild(menu(menuItems))
+header.appendChild(menu(menuItems))
 
