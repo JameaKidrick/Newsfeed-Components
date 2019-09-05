@@ -38,19 +38,24 @@ let menuItems = [
   const menuBtn = document.querySelector('.menu-button');
 
   function menu (menuItems){
+    // CREATE ELEMENTS
     const menuMenu = document.createElement('div');
     const menuList = document.createElement('ul');
 
+    // CREATE ELEMENT, APPEND, AND ADD TEXT FOR ARRAY ITEMS
     menuItems.forEach(items => {
       const menuListItems = document.createElement('li');
       menuList.appendChild(menuListItems);
       menuListItems.textContent = items;
     })
 
+    // APPEND 
     menuMenu.appendChild(menuList);
     
+    // ADD CLASS
     menuMenu.classList.add('menu');
 
+    // EVENT LISTENER
   menuBtn.addEventListener('click', e => {
     menuMenu.classList.toggle('menu--open');
     console.log('Button Clicked');
