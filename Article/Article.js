@@ -157,11 +157,18 @@ function fakeNews(title, date, firstParagraph, secondParagraph, thirdParagraph){
 
   // EVENT LISTENER
   articleBtn.addEventListener('click', e => {
-    articleBtn.textContent = 'Click to collapse'
+    if(articleNews.classList.contains('close')){
+      articleBtn.textContent = 'Click to collapse'
+      articleNews.style.overflow = 'auto';
+    }else{
+      articleBtn.textContent = 'Click to read more'
+      articleNews.style.overflow = 'hidden';
+    }
+    
     // STAYS AFTER; NEED TO ADD TOGGLE
     articleNews.classList.toggle('article-open');
     articleNews.classList.toggle('close');
-    articleNews.style.overflow = 'auto';
+    
     // STAYS AFTER; NEED TO ADD TOGGLE
     
   })
