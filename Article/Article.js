@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Project Showcase',
+    date:'Sep 4th, 2019',
+    firstParagraph: `I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman.`,
+
+    secondParagraph: `I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman.`,
+
+    thirdParagraph: `I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman. I am Batman.`
   }
 ];
 
@@ -99,7 +108,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
-  Hint: You will need to use createElement more than once here!
+    Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
@@ -110,5 +119,63 @@ const data = [
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
 */
+
+const articles = document.querySelector('.articles');
+
+function fakeNews(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  // CREATE ELEMENTS
+  const articleNews = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirst = document.createElement('p');
+  const articleSecond = document.createElement('p');
+  const articleThird = document.createElement('p');
+  const articleBtn = document.createElement('span');
+
+  // SETUP STRUCTURE OF ELEMENTS
+  articleNews.appendChild(articleTitle);
+  articleNews.appendChild(articleDate);
+  articleNews.appendChild(articleFirst);
+  articleNews.appendChild(articleSecond);
+  articleNews.appendChild(articleThird);
+  articleNews.appendChild(articleBtn);
+
+  // SETUP CLASS NAMES
+  articleNews.classList.add('article');
+  articleNews.classList.add('close');
+  articleDate.classList.add('date');
+  articleBtn.classList.add('expandButton');
+
+  // SET TEXT CONTENT
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirst.textContent = firstParagraph;
+  articleSecond.textContent = secondParagraph;
+  articleThird.textContent = thirdParagraph;
+  articleBtn.textContent = 'Click to read more'
+
+  // EVENT LISTENER
+  articleBtn.addEventListener('click', e => {
+    if(articleNews.classList.contains('close')){
+      articleBtn.textContent = 'Click to collapse'
+      articleNews.style.overflow = 'auto';
+    }else{
+      articleBtn.textContent = 'Click to read more'
+      articleNews.style.overflow = 'hidden';
+    }
+    
+    // STAYS AFTER; NEED TO ADD TOGGLE
+    articleNews.classList.toggle('article-open');
+    articleNews.classList.toggle('close');
+    
+    // STAYS AFTER; NEED TO ADD TOGGLE
+    
+  })
+
+  return articleNews;
+}
+
+data.forEach(element => {
+  articles.appendChild(fakeNews(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph))
+})
